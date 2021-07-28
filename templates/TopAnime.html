@@ -1,0 +1,44 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+  <body>
+    
+<div class="banner mb-5 p-3" style="color: white; 
+background: linear-gradient(to right, #fc00ff, #00dbde); font-weight: 800;">
+  <h1>Top 100 Anime {{ title }} </h1>
+ 
+</div>
+  
+    <table  class="table table-dark table-hover">
+      <tr>
+        <th scope="col"><h2>Title</h2></th>
+        <th scope="col"><h2>Alt Title</h2></th>
+        <th scope="col"><h2>Genre</h2></th> 
+        <th scope="col"><h2>Rating</h2></th>
+        <th scope="col"><h2>Link</h2></th>
+        <th scope="col"><h2>Recommend</h2></th>
+      </tr>
+    {% for anime in topanime %}
+    <div>
+     <form action = "/similarByContent" method = 'POST'>
+     
+      <tr>
+        <td>{{ anime.name }}</td>
+        <td>{{ anime.english_name }}</td>
+        <td>{{ anime.genre }}</td>
+        <td>{{ anime.rating }}</td>
+        <td> <a target="_blank" class="btn btn-light" href="{{anime.MAL}}">Read More</a> </td>
+        <td> <input name="name" type ="Hidden" value="{{anime.name}}"/>
+         <input type ="submit" value="Recommend" style="padding: 8px 16px;"/> </td>
+      </tr>
+    
+     </form>
+    </div>
+    
+    {% endfor %}
+    </table>
+  </body>
+
+
+{% endblock %}
